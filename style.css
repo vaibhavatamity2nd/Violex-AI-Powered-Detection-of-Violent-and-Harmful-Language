@@ -78,7 +78,7 @@ h1 {
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 3.8rem;
 }
 
 .card {
@@ -548,7 +548,7 @@ input {
 .card {
     position: relative;
     width: 170px;
-    height: 155px;
+    height: 170px;
     background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
@@ -658,6 +658,7 @@ input {
 
 #search-icon {
     margin-left: 10px; /* Space between search icon and input field */
+    z-index: 1000;
 }
 
 .input {
