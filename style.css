@@ -606,7 +606,7 @@ input {
 
 .card::after {
     bottom: 0;
-    left: 0;
+    left: 10px;
     border-radius: 0 100% 0 15px;
 }
 
@@ -627,7 +627,7 @@ input {
     -webkit-background-clip: text;
     background-image: linear-gradient(25deg, #d0cfd6, #ff00e9);
     color: transparent;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bolder;
 }
 #cimg2:hover:after {
@@ -635,7 +635,7 @@ input {
     -webkit-background-clip: text;
     background-image: linear-gradient(25deg, #d0cfd6, #ff00e9);
     color: transparent;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bolder;
 }
 #cimg3:hover:after {
@@ -643,7 +643,7 @@ input {
     -webkit-background-clip: text;
     background-image: linear-gradient(25deg, #d0cfd6, #ff00e9);
     color: transparent;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bolder;
 }
 
@@ -670,5 +670,5 @@ input {
 #input-mask, #pink-mask {
     /* Add any other styling if needed */
 }
-
+/* -------------------------------------------LOADER------------------------------------------ */
 
