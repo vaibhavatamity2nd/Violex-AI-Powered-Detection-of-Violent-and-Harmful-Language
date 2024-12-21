@@ -647,3 +647,27 @@ input {
     font-weight: bolder;
 }
 
+#main {
+    display: flex;
+    align-items: center;
+}
+
+#send-icon {
+    margin-right: 10px; /* Space between send icon and input field */
+}
+
+#search-icon {
+    margin-left: 10px; /* Space between search icon and input field */
+}
+
+.input {
+    flex-grow: 1; /* Allow input to take remaining space */
+    padding: 10px;
+    font-size: 16px;
+}
+
+#input-mask, #pink-mask {
+    /* Add any other styling if needed */
+}
+
+
