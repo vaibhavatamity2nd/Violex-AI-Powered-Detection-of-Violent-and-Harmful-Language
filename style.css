@@ -488,7 +488,7 @@ input {
     justify-content: center;
     z-index: 2;
     max-height: 40px;
-    max-width: 38px;
+    max-width: 70px;
     height: 100%;
     width: 40px;
     isolation: isolate;
@@ -497,6 +497,10 @@ input {
     background: linear-gradient(180deg, #161329, black, #1d1b4b);
     border: 1px solid transparent;
 }
+
+/* #filter-icon svg{
+    margin-right: 0.8rem;
+} */
 
 .filterBorder {
     height: 42px;
