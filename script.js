@@ -30,3 +30,25 @@ senBtn.addEventListener("click", function () {
     }
 });
 
+
+const openPopup = document.getElementById('new-icon');
+    const closePopup = document.getElementById('close-popup');
+    const popup = document.getElementById('popup');
+
+    // Show the popup
+    openPopup.addEventListener('click', () => {
+        popup.style.display = 'flex';
+    });
+
+    // Close the popup
+    closePopup.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+
+    // Close popup when clicking outside the content
+    window.addEventListener('click', (event) => {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+
