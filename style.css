@@ -11,9 +11,9 @@ body {
     background: linear-gradient(135deg, #000000 0%, rgb(18, 26, 79) 100%);
     padding: 20px;
     /* background-image: url("animatedBg.gif"); */
-    background-image: url("Cover.png");
+    /* background-image: url("Lawrencium.jpg"); */
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
 }
 
 .header {
@@ -189,7 +189,7 @@ input {
     .input-container{
         /* margin-top: 10rem; */
         position: relative;
-        top: 20rem;
+        top: 10rem;
     }
 }
 

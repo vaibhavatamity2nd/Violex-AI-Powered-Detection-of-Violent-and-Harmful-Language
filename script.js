@@ -20,7 +20,7 @@ senBtn.addEventListener("click", function () {
             document.getElementById("sub-t").style.display = "none";
             document.getElementById("h1").style.display = "none";
             document.getElementById("input-cont").style.position = "relative";
-            document.getElementById("input-cont").style.top = "39rem";
+            document.getElementById("input-cont").style.top = "28rem";
             curr = false;
         }
     }
