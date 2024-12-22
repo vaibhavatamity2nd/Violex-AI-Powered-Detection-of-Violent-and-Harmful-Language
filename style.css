@@ -479,10 +479,12 @@ input {
     }
 }
 
-#filter-icon {
+.icon-container {
+    position: relative; /* Relative positioning for child absolute icons */
+}
+
+#filter-icon, #new-icon {
     position: absolute;
-    top: 8px;
-    right: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -498,37 +500,24 @@ input {
     border: 1px solid transparent;
 }
 
-.filterBorder {
-    height: 42px;
-    width: 40px;
-    position: absolute;
-    overflow: hidden;
-    top: 7px;
-    right: 7px;
-    border-radius: 10px;
+/* Filter Icon */
+#filter-icon {
+    top: 8px;
+    right: 50px; /* Adjust right value to create space for new icon */
 }
 
-.filterBorder::before {
-    content: "";
-
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(90deg);
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    filter: brightness(1.35);
-    background-image: conic-gradient(rgba(0, 0, 0, 0),
-            #3d3a4f,
-            rgba(0, 0, 0, 0) 50%,
-            rgba(0, 0, 0, 0) 50%,
-            #3d3a4f,
-            rgba(0, 0, 0, 0) 100%);
-    animation: rotate 4s linear infinite;
+/* New Icon */
+#new-icon {
+    top: 8px;
+    right: 8px; /* Place new icon to the right */
 }
+
+/* Optional hover effect for both icons */
+#filter-icon:hover, #new-icon:hover {
+    background: linear-gradient(180deg, #1d1b4b, black, #161329);
+    cursor: pointer;
+}
+
 
 #main {
     position: relative;
@@ -670,5 +659,9 @@ input {
 #input-mask, #pink-mask {
     /* Add any other styling if needed */
 }
+
+
+
+
 /* -------------------------------------------LOADER------------------------------------------ */
 
