@@ -3,8 +3,8 @@ let senBtn = document.querySelector("#filter-icon");
 
 let curr = true;
 const mediaQuery = window.matchMedia('(max-width: 768px)');
-let audio = new Audio('Skype call sound.mp3');
-audio.volume = 0.3;
+let audio = new Audio('static/Skype_call_sound.mp3');
+audio.volume = 0.01;
 
 senBtn.addEventListener("click", function () {
     if (curr == true && !mediaQuery.matches) {
@@ -40,7 +40,7 @@ const popup = document.getElementById('popup');
 // Show the popup
 openPopup.addEventListener('click', () => {
     popup.style.display = 'flex';
-    audio.volume = 0.05;
+    audio.volume = 0.01;
     audio.play();
 });
 
