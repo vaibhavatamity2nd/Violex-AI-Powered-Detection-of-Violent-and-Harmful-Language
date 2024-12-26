@@ -58,6 +58,69 @@ window.addEventListener('click', (event) => {
 });
 
 
+
+
+// Adding Card
+
+document.addEventListener("DOMContentLoaded", () => {
+    const filterIcon = document.getElementById("filter-icon");
+    const inputField = document.querySelector(".input");
+    const solContainer = document.querySelector(".conv");
+
+    // Function to create a new card
+    function createCard(content, type) {
+        const newCard = document.createElement("div");
+        newCard.classList.add(type, "sol-card");
+
+        const cardHeading = document.createElement("h2");
+        cardHeading.textContent = content;
+        newCard.appendChild(cardHeading);
+
+        solContainer.appendChild(newCard);
+    }
+
+    // Event listener for the filter icon
+    filterIcon.addEventListener("click", () => {
+        const userInput = inputField.value.trim();
+
+        if (userInput) {
+            // Add user query as a new card
+            createCard(userInput, "ques");
+
+            // Fetch the response from the Flask server
+            fetch("/process", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ sentence: userInput })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Add server response as a new card
+                    if (data && data.result_sentence) {
+                        createCard(data.result_sentence, "sol");
+                    } else {
+                        createCard("No response received.", "sol");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching response:", error);
+                    createCard("Error processing the request.", "sol");
+                });
+        } else {
+            alert("Please enter a sentence.");
+        }
+    });
+});
+
+
+
+
+
+
+// Backend response
+
 document.getElementById("filter-icon").addEventListener("click", async () => {
     const inputField = document.querySelector(".input");
     const sentence = inputField.value;
