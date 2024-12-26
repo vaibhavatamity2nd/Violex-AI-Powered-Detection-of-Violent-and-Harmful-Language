@@ -60,8 +60,6 @@ window.addEventListener('click', (event) => {
 
 
 
-// Adding Card
-
 document.addEventListener("DOMContentLoaded", () => {
     const filterIcon = document.getElementById("filter-icon");
     const inputField = document.querySelector(".input");
@@ -91,20 +89,30 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch("/process", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ sentence: userInput })
+                body: JSON.stringify({ sentence: userInput }),
             })
-                .then(response => response.json())
-                .then(data => {
-                    // Add server response as a new card
-                    if (data && data.result_sentence) {
-                        createCard(data.result_sentence, "sol");
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Server responded with status ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    // Log the full response to debug
+                    console.log("Server response:", data);
+
+                    // Validate and handle the server response
+                    if (data && data.processed_sentence) {
+                        createCard(data.processed_sentence, "sol");
+                    } else if (data.error) {
+                        createCard(data.error, "sol");
                     } else {
-                        createCard("No response received.", "sol");
+                        createCard("No valid response received.", "sol");
                     }
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error("Error fetching response:", error);
                     createCard("Error processing the request.", "sol");
                 });
@@ -113,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
 
 
 
