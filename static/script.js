@@ -56,3 +56,37 @@ window.addEventListener('click', (event) => {
         popup.style.display = 'none';
     }
 });
+
+
+document.getElementById("filter-icon").addEventListener("click", async () => {
+    const inputField = document.querySelector(".input");
+    const sentence = inputField.value;
+
+    if (!sentence) {
+        alert("Please enter a sentence.");
+        return;
+    }
+
+    try {
+        // Send the input to the Flask backend
+        const response = await fetch("/process", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ sentence: sentence }),
+        });
+
+        const result = await response.json();
+        if (result.processed_sentence) {
+            // Update the result in the HTML
+            document.querySelector("#sol-c .sol-card h2").innerText = sentence;
+            document.querySelector("#ques-c .sol-card h2").innerText = result.processed_sentence;
+        } else {
+            alert("Error processing sentence.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while processing.");
+    }
+});
