@@ -715,12 +715,16 @@ input {
 
 /* -------------------------------------------Solution------------------------------------------ */
 
-.sol{
-    display: none;
-    justify-content: center;
+.sol {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
-    margin: 35px;
+    margin-top: 20px;
+    max-height: 80vh; /* Restrict max height of the container */
+    overflow-y: auto; /* Allow vertical scrolling if the content exceeds container height */
+    padding-bottom: 20px; /* Space at the bottom for scrolling */
 }
 
 .sol-card {

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VioLex</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- ---------------------------NAVBAR--------------------------------- -->
+    <div class="Nvbar">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">VioLex</a>
+            </div>
+        </nav>
+    </div>
+    <!-- -------------------------------HERO-DIV-------------------------- -->
+    <div class="hero">
+        <div class="hero-f-head" id="hero-f">
+            <p class="heading-fst">Speak Safe, Surf Smart</p>
+            <p class="heading-sec">Empowering you to identify and combat online hate.</p>
+            <p class="heading-thd">Test your text now!</p>
+        </div>
+        <!-- ---------------------CARD---------------------------------- -->
+        <div class="card" id="card-cont">
+            <div class="demo-card">
+                <div class="chat-container">
+                    <div class="message left">
+                        <img src="avatar1.jpg" class="profile-pic">
+                        <div class="bubble">hello,are we meeting today?</div>
+                    </div>
+
+                    <div class="message right">
+                        <img src="avatar2.jpg" class="profile-pic">
+                        <div class="bubble">yes,what time suits you?</div>
+                    </div>
+                    <div class="message left">
+                        <img src="avatar1.jpg" class="profile-pic">
+                        <div class="bubble">hello,are we meeting today?</div>
+                    </div>
+
+                    <div class="message right">
+                        <img src="avatar2.jpg" class="profile-pic">
+                        <div class="bubble">yes,what time suits you?</div>
+                    </div>
+                    <div class="message left">
+                        <img src="avatar1.jpg" class="profile-pic">
+                        <div class="bubble">hello,are we meeting today?</div>
+                    </div>
+
+                    <div class="message right">
+                        <img src="avatar2.jpg" class="profile-pic">
+                        <div class="bubble">yes,what time suits you?</div>
+                    </div>
+
+                    <div class="message left">
+                        <img src="avatar1.jpg" class="profile-pic">
+                        <div class="bubble">i was thinking after lunch,i have a meeting in the morning</div>
+                    </div>
+
+                    <div class="message right">
+                        <img src="avatar2.jpg" class="profile-pic">
+                        <div class="bubble">maybe another day?</div>
+                    </div>
+
+                    <div class="message left">
+                        <img src="avatar1.jpg" class="profile-pic">
+                        <div class="bubble">that's all right,what's about you? what are you going to do?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- --------------------------search-------------------------------- -->
+        <div class="search">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search...">
+                <div class="search-icons">
+                    <div class="send-icon" id="filter-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                            <path d="M12.0004 18.5816V12.5M12.7976 18.754L15.8103 19.7625C17.4511 20.3118 18.2714 20.5864 18.7773 20.3893C19.2166 20.2182 19.5499 19.8505 19.6771 19.3965C19.8236 18.8737 19.4699 18.0843 18.7624 16.5053L14.2198 6.36709C13.5279 4.82299 13.182 4.05094 12.7001 3.81172C12.2814 3.60388 11.7898 3.60309 11.3705 3.80958C10.8878 4.04726 10.5394 4.8182 9.84259 6.36006L5.25633 16.5082C4.54325 18.086 4.18671 18.875 4.33169 19.3983C4.4576 19.8528 4.78992 20.2216 5.22888 20.394C5.73435 20.5926 6.55603 20.3198 8.19939 19.7744L11.2797 18.752C11.5614 18.6585 11.7023 18.6117 11.8464 18.5933C11.9742 18.5769 12.1036 18.5771 12.2314 18.5938C12.3754 18.6126 12.5162 18.6597 12.7976 18.754Z"
+                                stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="new-icon" id="mic">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                            <path
+                                d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- -------------------------POP------------------------------- -->
+
+        <div class="popup-overlay" id="popup">
+            <button class="close-btn" id="close-popup">&times;</button>
+            <div class="loader">
+                <div style="--i: 1; --inset:44%" class="box">
+                    
+                        <svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>voice_fill</title> <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Media" transform="translate(-960.000000, -144.000000)" fill-rule="nonzero"> <g id="voice_fill" transform="translate(960.000000, 144.000000)"> <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path> <path d="M12,2.5 C12.7796706,2.5 13.4204457,3.09488554 13.4931332,3.85553954 L13.5,4 L13.5,20 C13.5,20.8284 12.8284,21.5 12,21.5 C11.2203294,21.5 10.5795543,20.9050879 10.5068668,20.1444558 L10.5,20 L10.5,4 C10.5,3.17157 11.1716,2.5 12,2.5 Z M8,5.5 C8.82843,5.5 9.5,6.17157 9.5,7 L9.5,17 C9.5,17.8284 8.82843,18.5 8,18.5 C7.17157,18.5 6.5,17.8284 6.5,17 L6.5,7 C6.5,6.17157 7.17157,5.5 8,5.5 Z M16,5.5 C16.8284,5.5 17.5,6.17157 17.5,7 L17.5,17 C17.5,17.8284 16.8284,18.5 16,18.5 C15.1716,18.5 14.5,17.8284 14.5,17 L14.5,7 C14.5,6.17157 15.1716,5.5 16,5.5 Z M4,8.5 C4.82843,8.5 5.5,9.17157 5.5,10 L5.5,14 C5.5,14.8284 4.82843,15.5 4,15.5 C3.17157,15.5 2.5,14.8284 2.5,14 L2.5,10 C2.5,9.17157 3.17157,8.5 4,8.5 Z M20,8.5 C20.7796706,8.5 21.4204457,9.09488554 21.4931332,9.85553954 L21.5,10 L21.5,14 C21.5,14.8284 20.8284,15.5 20,15.5 C19.2203294,15.5 18.5795543,14.9050879 18.5068668,14.1444558 L18.5,14 L18.5,10 C18.5,9.17157 19.1716,8.5 20,8.5 Z" id="形状" fill="#ff0000"> </path> </g> </g> </g> </g></svg>
+                    
+                </div>
+                <div style="--i: 2; --inset:40%" class="box"></div>
+                <div style="--i: 3; --inset:36%" class="box"></div>
+                <div style="--i: 4; --inset:32%" class="box"></div>
+                <div style="--i: 5; --inset:28%" class="box"></div>
+                <div style="--i: 6; --inset:24%" class="box"></div>
+                <div style="--i: 7; --inset:20%" class="box"></div>
+                <div style="--i: 8; --inset:16%" class="box"></div>
+            </div>
+        </div>
+
+
+
+        <!-- ------------------------------------------------------------ -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+            <script src="script.js"></script>
+</body>
+
+</html>
