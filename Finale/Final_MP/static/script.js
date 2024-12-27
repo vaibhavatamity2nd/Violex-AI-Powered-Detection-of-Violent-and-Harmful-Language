@@ -95,10 +95,13 @@ function createMessage(content, type) {
     profilePic.src = type === "right" ? "static/Cpl.jpg" : "static/Robo.jpg"; // Avatar for message type
     messageDiv.appendChild(profilePic);
 
-    const bubbleDiv = document.createElement("div");
-    bubbleDiv.classList.add("bubble");
-    bubbleDiv.textContent = content; // Set message content
-    messageDiv.appendChild(bubbleDiv);
+    setTimeout(() => {
+        const bubbleDiv = document.createElement("div");
+        bubbleDiv.classList.add("bubble");
+        bubbleDiv.textContent = content; // Set message content
+        messageDiv.appendChild(bubbleDiv);
+    }, 2000); // 2000 milliseconds (2 seconds)
+    
 
     const chatContainer = document.querySelector(".chat-container");
     chatContainer.appendChild(messageDiv); // Add the message to the container
