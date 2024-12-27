@@ -10,20 +10,20 @@ fill_mask = pipeline("fill-mask", model="bert-base-uncased")  # Replace with a s
 
 def read_words_from_csv(file_path):
     """
-    Reads words from a CSV file. Assumes the CSV has two columns: word, replacement.
+    Reads words from a CSV file. Assumes the CSV has a single column with words.
     """
-    words_dict = {}
+    words_list = []
     try:
         with open(file_path, mode='r', newline='', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
-                if row and row[0]:  # Avoid empty rows
-                    words_dict[row[0].strip().lower()] = row[1].strip() if len(row) > 1 else "*****"
+                if row:  # Avoid empty rows
+                    words_list.append(row[0].strip().lower())  # Convert to lowercase for case-insensitive matching
     except FileNotFoundError:
         print("Error: The file was not found.")
-    return words_dict
+    return words_list
 
-def generate_suitable_sentence(sentence, general_words_dict, abusive_words_dict):
+def generate_suitable_sentence(sentence, words_list, abusive_words_list):
     """
     Generates a sentence by replacing words dynamically with contextually suitable or censored words.
     """
@@ -32,14 +32,14 @@ def generate_suitable_sentence(sentence, general_words_dict, abusive_words_dict)
 
     for word in words:
         cleaned_word = re.sub(r'[^\w\s]', '', word).lower()  # Remove punctuation and convert to lowercase
-        
-        # Check if the word is in abusive words list
-        if cleaned_word in abusive_words_dict:
-            # Get the replacement word or '*****' if not found
-            replacement = abusive_words_dict.get(cleaned_word, "*****")
-            processed_word = word.replace(cleaned_word, replacement, 1)
+        if cleaned_word in abusive_words_list:
+            # Handle abusive word replacement with masking
+            masked_sentence = sentence.replace(word, "[MASK]", 1)
+            predictions = fill_mask(masked_sentence)
+            best_replacement = predictions[0]["token_str"]  # Get the top prediction
+            processed_word = word.replace(cleaned_word, best_replacement, 1)  # Replace abusive word
             processed_words.append(processed_word)
-        elif cleaned_word in general_words_dict:
+        elif cleaned_word in words_list:
             # Handle contextual replacement for words in the general list
             masked_sentence = sentence.replace(cleaned_word, "[MASK]", 1)
             predictions = fill_mask(masked_sentence)
@@ -54,9 +54,8 @@ def generate_suitable_sentence(sentence, general_words_dict, abusive_words_dict)
 # Load the words and abusive words from the CSV files
 general_csv_path = "Finale/Final_MP/words.csv"  # Replace with your general words CSV file path
 abusive_csv_path = "Finale/Final_MP/abusive_words.csv"  # Replace with your abusive words CSV file path
-
-general_words_dict = read_words_from_csv(general_csv_path)
-abusive_words_dict = read_words_from_csv(abusive_csv_path)
+replacement_candidates = read_words_from_csv(general_csv_path)
+abusive_words = read_words_from_csv(abusive_csv_path)
 
 @app.route('/')
 def index():
@@ -66,8 +65,8 @@ def index():
 def process():
     data = request.json
     user_sentence = data.get("sentence", "")
-    if user_sentence:
-        result_sentence = generate_suitable_sentence(user_sentence, general_words_dict, abusive_words_dict)
+    if user_sentence and replacement_candidates:
+        result_sentence = generate_suitable_sentence(user_sentence, replacement_candidates, abusive_words)
         return jsonify({"processed_sentence": result_sentence})
     return jsonify({"error": "Invalid input"}), 400
 
