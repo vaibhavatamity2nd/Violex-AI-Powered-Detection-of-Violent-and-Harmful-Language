@@ -41,67 +41,67 @@ window.addEventListener("click", (event) => {
         
 
 
-        document.getElementById("filter-icon").addEventListener("click", async () => {
-            const inputField = document.querySelector(".search-input");
-            const chatContainer = document.querySelector(".chat-container"); // Ensure correct container is selected
-            const sentence = inputField.value.trim();
-        
-            if (!sentence) {
-                alert("Please enter a sentence.");
-                return;
-            }
-        
-            try {
-                // Send the input to the Flask backend
-                const response = await fetch("/process", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ sentence: sentence }),
-                });
-        
-                if (!response.ok) {
-                    throw new Error(`Server responded with status ${response.status}`);
-                }
-        
-                const result = await response.json();
-        
-                // Validate the backend response
-                if (result.processed_sentence) {
-                    // Add user input as a "right" message
-                    createMessage(sentence, "right");
-        
-                    // Add backend response as a "left" message after 1 second
-                    setTimeout(() => {
-                        createMessage(result.processed_sentence, "left");
-                    }, 1000);
-                } else {
-                    alert(result.error || "Error processing the sentence.");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("An error occurred while processing.");
-            }
+document.getElementById("filter-icon").addEventListener("click", async () => {
+    const inputField = document.querySelector(".search-input");
+    const chatContainer = document.querySelector(".chat-container"); // Ensure correct container is selected
+    const sentence = inputField.value.trim();
+
+    if (!sentence) {
+        alert("Please enter a sentence.");
+        return;
+    }
+
+    try {
+        // Send the input to the Flask backend
+        const response = await fetch("/process", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ sentence: sentence }),
         });
-        
-        // Helper function to create and append messages
-        function createMessage(content, type) {
-            const messageDiv = document.createElement("div");
-            messageDiv.classList.add("message", type); // "left" or "right"
-        
-            const profilePic = document.createElement("img");
-            profilePic.classList.add("profile-pic");
-            profilePic.src = type === "right" ? "static/Cpl.jpg" : "static/Robo.jpg"; // Avatar for message type
-            messageDiv.appendChild(profilePic);
-        
-            const bubbleDiv = document.createElement("div");
-            bubbleDiv.classList.add("bubble");
-            bubbleDiv.textContent = content; // Set message content
-            messageDiv.appendChild(bubbleDiv);
-        
-            const chatContainer = document.querySelector(".chat-container");
-            chatContainer.appendChild(messageDiv); // Add the message to the container
+
+        if (!response.ok) {
+            throw new Error(`Server responded with status ${response.status}`);
         }
-        
+
+        const result = await response.json();
+
+        // Validate the backend response
+        if (result.processed_sentence) {
+            // Add user input as a "right" message
+            createMessage(sentence, "right");
+
+            // Add backend response as a "left" message after 1 second
+            setTimeout(() => {
+                createMessage(result.processed_sentence, "left");
+            }, 1000);
+        } else {
+            alert(result.error || "Error processing the sentence.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while processing.");
+    }
+});
+
+// Helper function to create and append messages
+function createMessage(content, type) {
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("message", type); // "left" or "right"
+
+    const profilePic = document.createElement("img");
+    profilePic.classList.add("profile-pic");
+    profilePic.src = type === "right" ? "static/Cpl.jpg" : "static/Robo.jpg"; // Avatar for message type
+    messageDiv.appendChild(profilePic);
+
+    const bubbleDiv = document.createElement("div");
+    bubbleDiv.classList.add("bubble");
+    bubbleDiv.textContent = content; // Set message content
+    messageDiv.appendChild(bubbleDiv);
+
+    const chatContainer = document.querySelector(".chat-container");
+    chatContainer.appendChild(messageDiv); // Add the message to the container
+}
+
         
