@@ -75,7 +75,7 @@ document.getElementById("filter-icon").addEventListener("click", async () => {
             // Add backend response as a "left" message after 1 second
             setTimeout(() => {
                 createMessage(result.processed_sentence, "left");
-            }, 1000);
+            }, 2000);
         } else {
             alert(result.error || "Error processing the sentence.");
         }
@@ -95,13 +95,17 @@ function createMessage(content, type) {
     profilePic.src = type === "right" ? "static/Cpl.jpg" : "static/Robo.jpg"; // Avatar for message type
     messageDiv.appendChild(profilePic);
 
+    const bubbleDiv = document.createElement("div");
+    bubbleDiv.classList.add("bubble");
+
+    // Add the bubble to the messageDiv immediately without text
+    messageDiv.appendChild(bubbleDiv);
+
+    // Use setTimeout to add the text content after 2 seconds
     setTimeout(() => {
-        const bubbleDiv = document.createElement("div");
-        bubbleDiv.classList.add("bubble");
-        bubbleDiv.textContent = content; // Set message content
-        messageDiv.appendChild(bubbleDiv);
-    }, 2000); // 2000 milliseconds (2 seconds)
-    
+    bubbleDiv.textContent = content; // Set message content after 2 seconds
+    }, 2000); // 2000 milliseconds = 2 seconds
+
 
     const chatContainer = document.querySelector(".chat-container");
     chatContainer.appendChild(messageDiv); // Add the message to the container
