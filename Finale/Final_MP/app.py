@@ -2,11 +2,72 @@ from flask import Flask, request, jsonify, render_template
 import csv
 from transformers import pipeline
 import re
+import speech_recognition as sr
+from pydub import AudioSegment
+from pydub.playback import play
+import os
+import io
+
 
 app = Flask(__name__)
 
 # Load a language model pipeline for generating suitable replacements
 fill_mask = pipeline("fill-mask", model="bert-base-uncased")  # Replace with a suitable model
+
+
+
+@app.route('/upload', methods=['POST'])
+def upload_audio():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"})
+    
+    file = request.files['file']
+    
+    if file.filename == '':
+        return jsonify({"error": "No selected file"})
+    
+    try:
+        # Convert audio to WAV format if it's not already
+        print(f"Received file: {file.filename}")
+        
+        audio = AudioSegment.from_file(file)
+        print(f"Audio properties: {audio.frame_rate}, {audio.channels}, {audio.sample_width}")
+
+        # Normalize the audio
+        audio = audio.normalize()
+        
+        # Export the audio to WAV format with specific settings
+        wav_io = io.BytesIO()
+        audio.export(wav_io, format="wav", parameters=["-ar", "16000", "-ac", "1"])  # 16 kHz, mono
+        wav_io.seek(0)
+
+        # Use speech recognition to process the audio file
+        recognizer = sr.Recognizer()
+        with sr.AudioFile(wav_io) as audio_file:
+            audio_data = recognizer.record(audio_file)
+        
+        # Try recognizing the speech
+        try:
+            text = recognizer.recognize_google(audio_data)
+            print(f"Recognized text: {text}")
+            return jsonify({"text": text})
+        except sr.UnknownValueError:
+            print("Could not understand the audio")
+            return jsonify({"error": "Could not understand the audio"})
+        except sr.RequestError as e:
+            print(f"Request error: {e}")
+            return jsonify({"error": f"Could not request results; {e}"})
+    except Exception as e:
+        print(f"Error processing audio: {str(e)}")
+        return jsonify({"error": f"Error processing audio: {str(e)}"})
+
+
+
+
+
+
+
+
 
 def read_words_from_csv(file_path):
     """

@@ -2,7 +2,7 @@ let senBtn = document.querySelector("#filter-icon");
         let curr = true;
         let micBtn = document.querySelector("#mic");
         let clsBtn = document.querySelector("#close-popup");
-        let audio = new Audio('static/Skype_call_sound.mp3');
+        let audio = new Audio('static/1Skype_call_sound.mp3');
         
         // Popup and Button Functionality
         const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -158,3 +158,87 @@ function highlightDifferences(original, newContent) {
 
     return highlightedContent.trim();
 }
+
+
+
+
+
+
+
+let mediaRecorder;
+let audioChunks = [];
+let isRecording = false;  // Flag to track recording status
+let audioStream;  // Store the media stream to stop it if needed
+
+document.getElementById('mic').addEventListener('click', () => {
+    // Prevent multiple recordings
+    if (isRecording) return;
+    isRecording = true;
+
+    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+        audioStream = stream;  // Store the stream
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.start();
+
+        mediaRecorder.ondataavailable = (event) => {
+            audioChunks.push(event.data);
+        };
+
+        mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const formData = new FormData();
+            formData.append('file', audioBlob, 'audio.wav');
+
+            // Send audio to the Flask server
+            fetch('/upload', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.text) {
+                    console.log("Recognized Text:", data.text);
+                    document.querySelector('.search-input').value = data.text;
+                } else {
+                    console.error(data.error);
+                }
+            })
+            .catch(err => console.error(err));
+
+            isRecording = false;  // Reset the recording flag after processing
+        };
+
+        // Automatically stop the recording after 5 seconds
+        setTimeout(() => {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                console.log("Recording stopped after 5 seconds.");
+            }
+        }, 5000);
+    }).catch((err) => {
+        console.error("Microphone access error:", err);
+        isRecording = false;  // Reset in case of error
+    });
+});
+
+// Close the popup and stop recording when clicking the close button
+clsBtn.addEventListener("click", function () {
+    popup.style.display = "none";  // Hide the popup
+
+    // Stop the recording if it is in progress
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        console.log("Recording stopped when popup was closed.");
+    }
+
+    // Stop the stream to release resources
+    if (audioStream) {
+        audioStream.getTracks().forEach(track => track.stop());
+        console.log("Stream stopped.");
+    }
+
+    isRecording = false;  // Reset the recording flag
+    curr = true;
+});
