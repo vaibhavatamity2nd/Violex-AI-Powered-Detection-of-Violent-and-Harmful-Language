@@ -141,20 +141,20 @@ let senBtn = document.querySelector("#filter-icon");
             }
         }
 
-        // Function to highlight differences in bold
-        function highlightDifferences(original, newContent) {
-            let originalWords = original.split(" ");
-            let newWords = newContent.split(" ");
-            let highlightedContent = "";
+// Function to highlight differences in bold with red color
+function highlightDifferences(original, newContent) {
+    let originalWords = original.split(" ");
+    let newWords = newContent.split(" ");
+    let highlightedContent = "";
 
-            for (let i = 0; i < newWords.length; i++) {
-                // Compare each word and check if there's a difference
-                if (originalWords[i] !== newWords[i]) {
-                    highlightedContent += `<b>${newWords[i]}</b> `;
-                } else {
-                    highlightedContent += `${newWords[i]} `;
-                }
-            }
-
-            return highlightedContent.trim();
+    for (let i = 0; i < newWords.length; i++) {
+        // Compare each word and check if there's a difference
+        if (originalWords[i] !== newWords[i]) {
+            highlightedContent += `<b style="color: red;">${newWords[i]}</b> `;
+        } else {
+            highlightedContent += `${newWords[i]} `;
         }
+    }
+
+    return highlightedContent.trim();
+}
