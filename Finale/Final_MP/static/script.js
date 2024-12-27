@@ -75,7 +75,7 @@ document.getElementById("filter-icon").addEventListener("click", async () => {
             // Add backend response as a "left" message after 1 second
             setTimeout(() => {
                 createMessage(result.processed_sentence, "left");
-            }, 2000);
+            }, 1000);
         } else {
             alert(result.error || "Error processing the sentence.");
         }
@@ -100,15 +100,18 @@ function createMessage(content, type) {
 
     // Add the bubble to the messageDiv immediately without text
     messageDiv.appendChild(bubbleDiv);
-
-    // Use setTimeout to add the text content after 2 seconds
-    setTimeout(() => {
-    bubbleDiv.textContent = content; // Set message content after 2 seconds
-    }, 2000); // 2000 milliseconds = 2 seconds
-
-
     const chatContainer = document.querySelector(".chat-container");
     chatContainer.appendChild(messageDiv); // Add the message to the container
+
+    if (type === "left") {
+        // Only apply the delay for left messages
+        setTimeout(() => {
+            bubbleDiv.textContent = content; // Set message content after 2 seconds
+        }, 2000); // 2000 milliseconds = 2 seconds
+    } else {
+        // For right messages, set content immediately
+        bubbleDiv.textContent = content;
+    }
 }
 
         
