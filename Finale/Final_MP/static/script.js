@@ -2,7 +2,7 @@ let senBtn = document.querySelector("#filter-icon");
         let curr = true;
         let micBtn = document.querySelector("#mic");
         let clsBtn = document.querySelector("#close-popup");
-        let audio = new Audio('static/1Skype_call_sound.mp3');
+        let audio = new Audio('static/Skype_call_sound.mp3');
         
         // Popup and Button Functionality
         const mediaQuery = window.matchMedia('(max-width: 768px)');

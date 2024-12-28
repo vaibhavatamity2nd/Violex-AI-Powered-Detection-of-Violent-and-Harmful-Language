@@ -73,12 +73,6 @@ def upload_audio():
 
 
 
-
-
-
-
-
-
 def read_words_from_csv(file_path):
     """
     Reads words from a CSV file. Assumes the CSV has a single column with words.
