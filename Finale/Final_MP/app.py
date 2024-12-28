@@ -35,7 +35,17 @@ def upload_audio():
 
         # Normalize the audio
         audio = audio.normalize()
-        
+
+        # Set a target duration (in milliseconds, e.g., 5 seconds)
+        target_duration = 5 * 1000  # 5 seconds
+
+        # Loop the audio until it meets the target duration
+        while len(audio) < target_duration:
+            audio += audio  # Repeat the audio
+
+        # Trim the audio to exactly the target duration
+        audio = audio[:target_duration]
+
         # Export the audio to WAV format with specific settings
         wav_io = io.BytesIO()
         audio.export(wav_io, format="wav", parameters=["-ar", "16000", "-ac", "1"])  # 16 kHz, mono
