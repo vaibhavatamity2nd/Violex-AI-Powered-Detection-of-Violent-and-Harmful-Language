@@ -1,22 +1,9 @@
-Here's a README file that you can use for your project on GitHub:
+### VioLex
 
-```markdown
-# Audio-to-Text and Text Filtering Web Application
+https://github.com/user-attachments/assets/82311c24-aa28-4550-b0d8-c6466fd2541b
 
-This project is a Flask-based web application that performs two main tasks:
 
-1. **Audio-to-Text Conversion:** Upload an audio file, and the app will transcribe the speech in the audio to text using Google Speech Recognition.
-2. **Text Processing:** Provide a sentence, and the app will process it by replacing words from a CSV-based list (with context-sensitive replacements) and replacing abusive language with suitable alternatives using a BERT-based model.
-
-The application uses several libraries, including `Flask`, `transformers`, `speech_recognition`, `pydub`, and others to handle audio processing, language modeling, and web routing.
-
-## Features
-
-- **Speech Recognition:** Converts audio files (in various formats) to text.
-- **Text Filtering:** Replaces certain words in a user-provided sentence based on predefined CSV word lists, including abusive words.
-- **Dynamic Replacement:** Uses a language model (BERT) to predict contextually appropriate word replacements for both general and abusive words.
-
-## Setup Instructions
+### Setup Instructions
 
 To get this project running on your local machine, follow these steps:
 
