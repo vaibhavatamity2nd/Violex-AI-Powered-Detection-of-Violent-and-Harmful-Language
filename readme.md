@@ -131,6 +131,7 @@ Violex/
 │   └── index.html       # Frontend HTML template
 ├── static/              # Static files (CSS, JS, etc.)
 │   └── style.css
+    └── script.js
 ├── requirements.txt     # Python dependencies
 └── README.md            # Project documentation
 ```
