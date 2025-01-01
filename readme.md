@@ -122,7 +122,7 @@ POST /process
 ## Project Structure
 
 ```
-audio-text-filtering/
+Violex/
 │
 ├── app.py               # Main Flask application
 ├── words.csv            # CSV file with general words for replacement
