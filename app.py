@@ -10,6 +10,7 @@ import io
 
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # Limit to 10MB
 
 # Load a language model pipeline for generating suitable replacements
 fill_mask = pipeline("fill-mask", model="bert-base-uncased")  # Replace with a suitable model
