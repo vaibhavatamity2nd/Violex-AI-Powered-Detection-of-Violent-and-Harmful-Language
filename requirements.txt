@@ -1,4 +1,6 @@
 Flask
 transformers
+torch
 SpeechRecognition
-pydub
+pydub>=0.25.1
+imageio[ffmpeg]

@@ -7,7 +7,16 @@ from pydub import AudioSegment
 from pydub.playback import play
 import os
 import io
+import warnings
 
+AudioSegment.converter = "/usr/bin/ffmpeg"
+
+os.environ["TRANSFORMERS_CACHE"] = "/tmp/huggingface_cache"
+os.makedirs(os.environ["TRANSFORMERS_CACHE"], exist_ok=True)
+
+
+warnings.filterwarnings("ignore", category=SyntaxWarning)
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # Limit to 10MB
