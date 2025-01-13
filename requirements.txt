@@ -2,4 +2,3 @@ Flask
 transformers
 SpeechRecognition
 pydub
-torch
