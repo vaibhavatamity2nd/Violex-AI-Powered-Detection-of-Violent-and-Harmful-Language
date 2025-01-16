@@ -4,3 +4,4 @@ torch
 SpeechRecognition
 pydub>=0.25.1
 imageio[ffmpeg]
+gunicorn app:app
